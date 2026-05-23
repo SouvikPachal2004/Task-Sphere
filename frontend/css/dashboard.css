@@ -233,9 +233,9 @@
 }
 
 .header-btn {
-    width: 32px;
-    height: 32px;
-    border-radius: 0.4rem;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 0.4rem !important;
     border: none;
     background: #f3f4f6;
     color: #374151;
@@ -245,7 +245,8 @@
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
-    font-size: 0.875rem;
+    font-size: 0.8rem !important;
+    padding: 0 !important;
 }
 
 [data-theme="dark"] .header-btn {
@@ -291,8 +292,9 @@
 }
 
 .profile-avatar {
-    width: 28px;
-    height: 28px;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px;
     border-radius: 50%;
     background: linear-gradient(135deg, #8b5cf6, #7c3aed);
     display: flex;
@@ -300,7 +302,7 @@
     justify-content: center;
     color: white;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.7rem !important;
 }
 
 .dashboard-admin .profile-avatar {
