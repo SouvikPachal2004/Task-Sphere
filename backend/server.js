@@ -30,10 +30,8 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-// Serve the static frontend from the same service in production.
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '..', 'frontend')));
-}
+// Serve the static frontend files (works in both development and production)
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 // API Routes
 app.use('/api/public', require('./routes/publicRoutes'));
@@ -52,21 +50,10 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// Root route
-app.get('/', (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: 'Welcome to TaskFlow API',
-        version: '1.0.0',
-        endpoints: {
-            health: '/api/health',
-            auth: '/api/auth',
-            superadmin: '/api/superadmin',
-            admin: '/api/admin',
-            employee: '/api/employee',
-            notifications: '/api/notifications'
-        }
-    });
+// Fallback: serve index.html for any non-API route (SPA support)
+app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
 
 // 404 handler
@@ -82,8 +69,26 @@ app.use(errorHandler);
 
 // Start server
 const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST || '0.0.0.0'; // Listen on all network interfaces
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, HOST, () => {
+    // Get local IP address
+    const os = require('os');
+    const networkInterfaces = os.networkInterfaces();
+    let localIP = 'localhost';
+    
+    // Find the first non-internal IPv4 address
+    for (const interfaceName in networkInterfaces) {
+        const interfaces = networkInterfaces[interfaceName];
+        for (const iface of interfaces) {
+            if (iface.family === 'IPv4' && !iface.internal) {
+                localIP = iface.address;
+                break;
+            }
+        }
+        if (localIP !== 'localhost') break;
+    }
+    
     console.log(`
 ╔═══════════════════════════════════════════════════════╗
 ║                                                       ║
@@ -92,6 +97,12 @@ const server = app.listen(PORT, () => {
 ║   📡 Server running on port ${PORT}                     ║
 ║   🌍 Environment: ${process.env.NODE_ENV}                      ║
 ║   📊 Database: MongoDB                                ║
+║                                                       ║
+║   🔗 Access URLs:                                     ║
+║   • Local:    http://localhost:${PORT}                  ║
+║   • Network:  http://${localIP}:${PORT}            ║
+║                                                       ║
+║   💡 Share the Network URL with other users!         ║
 ║                                                       ║
 ╚═══════════════════════════════════════════════════════╝
     `);
