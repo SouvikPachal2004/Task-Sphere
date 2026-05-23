@@ -219,19 +219,31 @@ exports.getSecurityCodes = async (req, res) => {
 // @access  Private (Super Admin only)
 exports.getSystemStats = async (req, res) => {
     try {
-        const totalAdmins = await User.countDocuments({ role: 'admin' });
-        const totalEmployees = await User.countDocuments({ role: 'employee' });
-        const activeAdmins = await User.countDocuments({ role: 'admin', isActive: true });
-        const activeEmployees = await User.countDocuments({ role: 'employee', isActive: true });
+        const [
+            totalUsers,
+            totalAdmins,
+            totalEmployees,
+            totalSuperAdmins,
+            activeAdmins,
+            activeEmployees
+        ] = await Promise.all([
+            User.countDocuments(),
+            User.countDocuments({ role: 'admin' }),
+            User.countDocuments({ role: 'employee' }),
+            User.countDocuments({ role: 'superadmin' }),
+            User.countDocuments({ role: 'admin', isActive: true }),
+            User.countDocuments({ role: 'employee', isActive: true })
+        ]);
 
         res.status(200).json({
             success: true,
             data: {
+                totalUsers,
                 totalAdmins,
                 totalEmployees,
+                totalSuperAdmins,
                 activeAdmins,
-                activeEmployees,
-                totalUsers: totalAdmins + totalEmployees
+                activeEmployees
             }
         });
     } catch (error) {

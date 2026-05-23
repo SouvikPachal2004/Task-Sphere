@@ -36,6 +36,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // API Routes
+app.use('/api/public', require('./routes/publicRoutes'));
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/superadmin', require('./routes/superAdminRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));

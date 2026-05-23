@@ -3,6 +3,28 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
+    const API_URL = (() => {
+        const configuredUrl = window.TASKSPHERE_API_URL || window.TASKFLOW_API_URL;
+
+        if (configuredUrl) {
+            return configuredUrl.replace(/\/$/, '');
+        }
+
+        if (window.location.protocol === 'file:') {
+            return 'http://localhost:5000/api';
+        }
+
+        const localFrontendPort = window.location.port && window.location.port !== '5000';
+        const isLocalFrontend = ['localhost', '127.0.0.1'].includes(window.location.hostname) && localFrontendPort;
+
+        return isLocalFrontend ? 'http://localhost:5000/api' : `${window.location.origin}/api`;
+    })();
+
+    const liveStats = {
+        totalUsers: 0,
+        totalAdmins: 0,
+        totalEmployees: 0
+    };
     
     // ============================================
     // SMOOTH SCROLLING FOR NAVIGATION LINKS
@@ -100,20 +122,69 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     // HERO STATS COUNTER ANIMATION
     // ============================================
-    function animateCounter(element, target, duration = 2000) {
-        const start = 0;
-        const increment = target / (duration / 16);
+    function formatStat(value) {
+        return Number.isFinite(value) ? value.toLocaleString() : '0';
+    }
+
+    function animateCounter(element, target, duration = 900) {
+        const currentText = element.textContent.replace(/[^\d]/g, '');
+        const start = parseInt(currentText, 10) || 0;
+        const difference = target - start;
+        const increment = difference / (duration / 16);
         let current = start;
-        
+
+        if (difference === 0) {
+            element.textContent = formatStat(target);
+            return;
+        }
+
         const timer = setInterval(() => {
             current += increment;
-            if (current >= target) {
-                element.textContent = target;
+            const isComplete = difference > 0 ? current >= target : current <= target;
+
+            if (isComplete) {
+                element.textContent = formatStat(target);
                 clearInterval(timer);
             } else {
-                element.textContent = Math.floor(current) + '+';
+                element.textContent = formatStat(Math.max(0, Math.round(current)));
             }
         }, 16);
+    }
+
+    function renderLiveStats(stats, animate = true) {
+        Object.assign(liveStats, stats);
+
+        document.querySelectorAll('[data-live-stat]').forEach(element => {
+            const key = element.dataset.liveStat;
+            const value = Number(liveStats[key]) || 0;
+
+            if (animate) {
+                animateCounter(element, value);
+            } else {
+                element.textContent = formatStat(value);
+            }
+        });
+    }
+
+    async function loadLiveStats() {
+        try {
+            const response = await fetch(`${API_URL}/public/stats`, {
+                headers: {
+                    Accept: 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Stats request failed with ${response.status}`);
+            }
+
+            const result = await response.json();
+            if (result.success && result.data) {
+                renderLiveStats(result.data);
+            }
+        } catch (error) {
+            console.warn('Unable to load live platform stats:', error.message);
+        }
     }
     
     // Animate stats when they come into view
@@ -123,9 +194,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const statNumber = entry.target.querySelector('h4');
                 if (statNumber && !statNumber.classList.contains('animated')) {
                     statNumber.classList.add('animated');
-                    const targetText = statNumber.textContent;
-                    const targetNumber = parseInt(targetText.replace(/\D/g, ''));
-                    animateCounter(statNumber, targetNumber);
+                    const statKey = statNumber.dataset.liveStat;
+                    const targetNumber = statKey ? liveStats[statKey] : parseInt(statNumber.textContent.replace(/\D/g, ''), 10);
+                    animateCounter(statNumber, Number(targetNumber) || 0);
                 }
             }
         });
@@ -133,6 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const statItems = document.querySelectorAll('.stat-item');
     statItems.forEach(item => statsObserver.observe(item));
+
+    renderLiveStats(liveStats, false);
+    loadLiveStats();
+    setInterval(loadLiveStats, 30000);
     
     console.log('Landing page initialized successfully');
 });
