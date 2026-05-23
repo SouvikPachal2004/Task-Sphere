@@ -1,0 +1,12 @@
+{
+  "name": "Auto Deploy to Railway",
+  "version": "1.0.0",
+  "description": "Automatically deploys to Railway via CLI after agent completes a task",
+  "when": {
+    "type": "agentStop"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "powershell -Command \"Set-Location 'c:\\Users\\lenovo\\Downloads\\TaskSphere'; railway up --detach\""
+  }
+}
