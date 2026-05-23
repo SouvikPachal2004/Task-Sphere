@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Enterprise Task Manager</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojN2MzYWVkO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxNGI4YTY7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNSIgZmlsbD0idXJsKCNncmFkaWVudCkiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGcgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjAuNSI+CiAgICA8cmVjdCB4PSI3IiB5PSI5IiB3aWR0aD0iOCIgaGVpZ2h0PSIxLjUiIHJ4PSIwLjc1IiBmaWxsPSIjZmZmZmZmIi8+CiAgICA8cGF0aCBkPSJNMTcgOS43NSBMMTkgMTEuNzUgTDIzIDcuNzUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHJlY3QgeD0iNyIgeT0iMTMiIHdpZHRoPSI2IiBoZWlnaHQ9IjEuNSIgcng9IjAuNzUiIGZpbGw9IiNmZmZmZmYiLz4KICAgIDxwYXRoIGQ9Ik0xNSAxMy43NSBMMTcgMTUuNzUgTDIxIDExLjc1IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgIDxyZWN0IHg9IjciIHk9IjE3IiB3aWR0aD0iMTAiIGhlaWdodD0iMS41IiByeD0iMC43NSIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPGNpcmNsZSBjeD0iMTkiIGN5PSIxNy43NSIgcj0iMS41IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8cmVjdCB4PSI3IiB5PSIyMSIgd2lkdGg9IjciIGhlaWdodD0iMS41IiByeD0iMC43NSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjYpIi8+CiAgICA8cmVjdCB4PSIxNiIgeT0iMjEiIHdpZHRoPSIzIiBoZWlnaHQ9IjEuNSIgcng9IjAuNzUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4zKSIvPgogIDwvZz4KPC9zdmc+">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-tasks"></i>
+                <span>TaskFlow</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#roles" class="nav-link">Roles</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-wrapper">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Enterprise Task Management</span>
+                </div>
+                <h1 class="hero-title">Transform Your Team Workflow with <span class="highlight">TaskFlow</span></h1>
+                <p class="hero-description">Master task management, collaborate seamlessly, and boost team productivity with our intelligent platform.</p>
+                <div class="hero-buttons">
+                    <a href="signup.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i> Start Free Trial
+                    </a>
+                    <a href="#features" class="btn btn-outline btn-large">
+                        <i class="fas fa-play-circle"></i> See How It Works
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h4>50K+</h4>
+                        <p>Active Teams</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>200+</h4>
+                        <p>Integrations</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>1200+</h4>
+                        <p>Enterprise Clients</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <span class="preview-dot"></span>
+                        <span class="preview-dot"></span>
+                        <span class="preview-dot"></span>
+                    </div>
+                    <div class="preview-content">
+                        <div class="preview-card card-analytics">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="card-info">
+                                <p class="card-label">Platform Analytics</p>
+                                <span class="live-badge">LIVE</span>
+                            </div>
+                        </div>
+
+                        <div class="preview-stats">
+                            <div class="stat-box stat-box-1">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-details">
+                                    <p class="stat-number">50K+</p>
+                                    <p class="stat-label">Total Users</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-box stat-box-2">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div class="stat-details">
+                                    <p class="stat-number">200+</p>
+                                    <p class="stat-label">Total Admins</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Powerful Features</h2>
+            <p>Everything you need to manage your team efficiently</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Role-Based Access</h3>
+                <p>Super Admin, Admin, and Employee roles with granular permissions</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h3>Project Management</h3>
+                <p>Create and manage multiple projects with team collaboration</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h3>Task Tracking</h3>
+                <p>Assign, track, and update tasks with priority levels</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3>Analytics Dashboard</h3>
+                <p>Real-time insights into team productivity and progress</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3>Notifications</h3>
+                <p>Stay updated with real-time task and deadline notifications</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <h3>Dark Mode</h3>
+                <p>Comfortable viewing experience with light and dark themes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roles Section -->
+    <section id="roles" class="roles">
+        <div class="section-header">
+            <h2>User Roles</h2>
+            <p>Choose your role and start managing tasks</p>
+        </div>
+        <div class="roles-grid">
+            <div class="role-card role-superadmin">
+                <div class="role-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Super Admin</h3>
+                <p class="role-subtitle">System Administrator</p>
+                <ul class="role-features">
+                    <li><i class="fas fa-check"></i> Company Management</li>
+                    <li><i class="fas fa-check"></i> Admin Creation</li>
+                    <li><i class="fas fa-check"></i> Employee Monitoring</li>
+                    <li><i class="fas fa-check"></i> System Analytics</li>
+                    <li><i class="fas fa-check"></i> Security Codes</li>
+                </ul>
+            </div>
+            <div class="role-card role-admin">
+                <div class="role-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Admin</h3>
+                <p class="role-subtitle">Team Manager</p>
+                <ul class="role-features">
+                    <li><i class="fas fa-check"></i> Team Management</li>
+                    <li><i class="fas fa-check"></i> Project Creation</li>
+                    <li><i class="fas fa-check"></i> Task Assignment</li>
+                    <li><i class="fas fa-check"></i> Progress Tracking</li>
+                    <li><i class="fas fa-check"></i> Team Analytics</li>
+                </ul>
+            </div>
+            <div class="role-card role-employee">
+                <div class="role-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Employee</h3>
+                <p class="role-subtitle">Team Member</p>
+                <ul class="role-features">
+                    <li><i class="fas fa-check"></i> View Tasks</li>
+                    <li><i class="fas fa-check"></i> Update Status</li>
+                    <li><i class="fas fa-check"></i> Track Deadlines</li>
+                    <li><i class="fas fa-check"></i> Profile Management</li>
+                    <li><i class="fas fa-check"></i> Task History</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>TaskFlow</h4>
+                <p>Enterprise task management solution</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#roles">Roles</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TaskFlow. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/landing.js"></script>
+</body>
+</html>

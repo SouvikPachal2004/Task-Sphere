@@ -1,0 +1,14 @@
+{
+  "name": "tasksphere",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TaskSphere full-stack task management app",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "npm run dev --prefix backend",
+    "postinstall": "npm install --prefix backend"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

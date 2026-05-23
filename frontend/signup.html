@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - TaskFlow</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojN2MzYWVkO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxNGI4YTY7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNSIgZmlsbD0idXJsKCNncmFkaWVudCkiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGcgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjAuNSI+CiAgICA8cmVjdCB4PSI3IiB5PSI5IiB3aWR0aD0iOCIgaGVpZ2h0PSIxLjUiIHJ4PSIwLjc1IiBmaWxsPSIjZmZmZmZmIi8+CiAgICA8cGF0aCBkPSJNMTcgOS43NSBMMTkgMTEuNzUgTDIzIDcuNzUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHJlY3QgeD0iNyIgeT0iMTMiIHdpZHRoPSI2IiBoZWlnaHQ9IjEuNSIgcng9IjAuNzUiIGZpbGw9IiNmZmZmZmYiLz4KICAgIDxwYXRoIGQ9Ik0xNSAxMy43NSBMMTcgMTUuNzUgTDIxIDExLjc1IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgIDxyZWN0IHg9IjciIHk9IjE3IiB3aWR0aD0iMTAiIGhlaWdodD0iMS41IiByeD0iMC43NSIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPGNpcmNsZSBjeD0iMTkiIGN5PSIxNy43NSIgcj0iMS41IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8cmVjdCB4PSI3IiB5PSIyMSIgd2lkdGg9IjciIGhlaWdodD0iMS41IiByeD0iMC43NSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjYpIi8+CiAgICA8cmVjdCB4PSIxNiIgeT0iMjEiIHdpZHRoPSIzIiBoZWlnaHQ9IjEuNSIgcng9IjAuNzUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4zKSIvPgogIDwvZz4KPC9zdmc+">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-tasks"></i>
+                <span>TaskFlow</span>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="login.html" class="btn btn-secondary">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="auth-container">
+        <div class="auth-wrapper">
+            <!-- Left Side - Info -->
+            <div class="auth-info">
+                <div class="info-content">
+                    <h2>Join TaskFlow</h2>
+                    <p>Create your account and start managing tasks efficiently</p>
+                    <div class="info-features">
+                        <div class="info-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Role-based access control</span>
+                        </div>
+                        <div class="info-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Team collaboration</span>
+                        </div>
+                        <div class="info-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Real-time analytics</span>
+                        </div>
+                        <div class="info-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Secure authentication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Form -->
+            <div class="auth-form-wrapper">
+                <form id="signupForm" class="auth-form">
+                    <h3>Create Account</h3>
+
+                    <!-- Alert Messages -->
+                    <div id="alertContainer"></div>
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <div class="input-group">
+                            <i class="fas fa-user input-icon"></i>
+                            <input 
+                                type="text" 
+                                id="fullName" 
+                                name="fullName" 
+                                placeholder="Enter your full name"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="Enter your email"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                title="Please enter a valid email address"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Position -->
+                    <div class="form-group">
+                        <label for="position">Position/Title</label>
+                        <div class="input-group">
+                            <i class="fas fa-briefcase input-icon"></i>
+                            <input 
+                                type="text" 
+                                id="position" 
+                                name="position" 
+                                placeholder="e.g., Software Developer, Manager"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Role Selection -->
+                    <div class="form-group">
+                        <label for="role">Select Role</label>
+                        <div class="role-selector">
+                            <div class="role-option" data-role="employee">
+                                <input type="radio" id="roleEmployee" name="role" value="employee" checked>
+                                <label for="roleEmployee" class="role-label">
+                                    <i class="fas fa-user"></i>
+                                    <span>Employee</span>
+                                </label>
+                            </div>
+                            <div class="role-option" data-role="admin">
+                                <input type="radio" id="roleAdmin" name="role" value="admin">
+                                <label for="roleAdmin" class="role-label">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span>Admin</span>
+                                </label>
+                            </div>
+                            <div class="role-option" data-role="superadmin">
+                                <input type="radio" id="roleSuperAdmin" name="role" value="superadmin">
+                                <label for="roleSuperAdmin" class="role-label">
+                                    <i class="fas fa-user-shield"></i>
+                                    <span>Super Admin</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Code (Conditional) -->
+                    <div class="form-group" id="securityCodeGroup" style="display: none;">
+                        <label for="securityCode">Security Code</label>
+                        <div class="input-group">
+                            <i class="fas fa-key input-icon"></i>
+                            <input 
+                                type="password" 
+                                id="securityCode" 
+                                name="securityCode" 
+                                placeholder="Enter security code"
+                            >
+                        </div>
+                        <small class="code-hint" id="codeHint"></small>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Enter password (min 8 characters)"
+                                required
+                            >
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength"></div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input 
+                                type="password" 
+                                id="confirmPassword" 
+                                name="confirmPassword" 
+                                placeholder="Confirm password"
+                                required
+                            >
+                            <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the Terms & Conditions</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <span id="submitText">Create Account</span>
+                        <span id="submitSpinner" class="spinner" style="display: none;"></span>
+                    </button>
+
+                    <!-- Login Link -->
+                    <p class="auth-link">
+                        Already have an account? <a href="login.html">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

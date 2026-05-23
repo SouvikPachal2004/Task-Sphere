@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TaskFlow</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-admin">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-tasks"></i>
+                <span>TaskFlow</span>
+            </div>
+            
+            <div class="sidebar-profile">
+                <h3 class="user-name">Admin Name</h3>
+                <p class="user-position">Position</p>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">MAIN</div>
+                <nav class="sidebar-menu">
+                    <a href="#dashboard" class="menu-link active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">MANAGEMENT</div>
+                <nav class="sidebar-menu">
+                    <a href="#projects" class="menu-link">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
+                    </a>
+                    <a href="#tasks" class="menu-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Tasks</span>
+                    </a>
+                    <a href="#team" class="menu-link">
+                        <i class="fas fa-users"></i>
+                        <span>Team Members</span>
+                    </a>
+                    <a href="#analytics" class="menu-link">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Analytics</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">ACCOUNT</div>
+                <nav class="sidebar-menu">
+                    <a href="#profile" class="menu-link">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="#logout" class="menu-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </nav>
+            </div>
+
+            <button class="btn-new-task">
+                <i class="fas fa-plus"></i>
+                New Task
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-wrapper">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's your team overview.</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search tasks, team members...">
+                    </div>
+                    <button class="header-btn theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="header-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div class="header-profile">
+                        <div class="profile-avatar">A</div>
+                        <div class="profile-info">
+                            <span class="user-name">Admin</span>
+                            <span class="user-position">Position</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-main">
+                <div class="page-header">
+                    <h2>Team Overview</h2>
+                    <button class="btn-export">
+                        <i class="fas fa-download"></i>
+                        Export Report
+                    </button>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Tasks</span>
+                            <div class="stat-icon cyan">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">In Progress</span>
+                            <div class="stat-icon orange">
+                                <i class="fas fa-spinner"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Completed</span>
+                            <div class="stat-icon green">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Team Members</span>
+                            <div class="stat-icon purple">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+                </div>
+
+                <!-- Create Project Section -->
+                <div class="tasks-section">
+                    <h2>Create New Project</h2>
+                    <form id="createProjectForm" class="project-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Project Subject</label>
+                                <input type="text" id="projectSubject" required placeholder="Enter project name">
+                            </div>
+                            <div class="form-group">
+                                <label>Project Code</label>
+                                <input type="text" id="projectCode" required placeholder="e.g., PROJ001">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Daily Production Target</label>
+                                <input type="number" id="dailyProductionTarget" required min="1" placeholder="e.g., 200">
+                            </div>
+                            <div class="form-group">
+                                <label>Assign Users</label>
+                                <select id="assignedUsers" multiple required>
+                                    <option value="">Loading users...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Create Project
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Projects List -->
+                <div class="tasks-section">
+                    <h2>My Projects</h2>
+                    <div id="projectsContainer" class="tasks-grid">
+                        <p class="loading">Loading projects...</p>
+                    </div>
+                </div>
+
+                <!-- Active Tasks -->
+                <div class="tasks-section">
+                    <h2>Active Tasks</h2>
+                    <div id="adminTasksContainer" class="tasks-grid">
+                        <p class="loading">Loading tasks...</p>
+                    </div>
+                </div>
+
+                <!-- Completed Tasks -->
+                <div class="tasks-section">
+                    <h2>Completed Tasks</h2>
+                    <div id="completedTasksContainer" class="tasks-grid">
+                        <p class="loading">Loading completed tasks...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="btn-mark-read">Mark all as read</button>
+        </div>
+        <div class="notification-body">
+            <div class="notification-list">
+                <p class="loading">Loading notifications...</p>
+            </div>
+        </div>
+        <div class="notification-footer">
+            <a href="#all">View all notifications</a>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard - TaskFlow</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojN2MzYWVkO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxNGI4YTY7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNSIgZmlsbD0idXJsKCNncmFkaWVudCkiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPGcgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjAuNSI+CiAgICA8cmVjdCB4PSI3IiB5PSI5IiB3aWR0aD0iOCIgaGVpZ2h0PSIxLjUiIHJ4PSIwLjc1IiBmaWxsPSIjZmZmZmZmIi8+CiAgICA8cGF0aCBkPSJNMTcgOS43NSBMMTkgMTEuNzUgTDIzIDcuNzUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPHJlY3QgeD0iNyIgeT0iMTMiIHdpZHRoPSI2IiBoZWlnaHQ9IjEuNSIgcng9IjAuNzUiIGZpbGw9IiNmZmZmZmYiLz4KICAgIDxwYXRoIGQ9Ik0xNSAxMy43NSBMMTcgMTUuNzUgTDIxIDExLjc1IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgIDxyZWN0IHg9IjciIHk9IjE3IiB3aWR0aD0iMTAiIGhlaWdodD0iMS41IiByeD0iMC43NSIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPGNpcmNsZSBjeD0iMTkiIGN5PSIxNy43NSIgcj0iMS41IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8cmVjdCB4PSI3IiB5PSIyMSIgd2lkdGg9IjciIGhlaWdodD0iMS41IiByeD0iMC43NSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjYpIi8+CiAgICA8cmVjdCB4PSIxNiIgeT0iMjEiIHdpZHRoPSIzIiBoZWlnaHQ9IjEuNSIgcng9IjAuNzUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4zKSIvPgogIDwvZz4KPC9zdmc+">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-superadmin">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-tasks"></i>
+                <span>TaskFlow</span>
+            </div>
+            
+            <div class="sidebar-profile">
+                <h3 class="user-name">Super Admin Name</h3>
+                <p class="user-position">Position</p>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">MAIN</div>
+                <nav class="sidebar-menu">
+                    <a href="#dashboard" class="menu-link active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">MANAGEMENT</div>
+                <nav class="sidebar-menu">
+                    <a href="#admins" class="menu-link">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Admins</span>
+                    </a>
+                    <a href="#employees" class="menu-link">
+                        <i class="fas fa-users"></i>
+                        <span>Employees</span>
+                    </a>
+                    <a href="#projects" class="menu-link">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
+                    </a>
+                    <a href="#tasks" class="menu-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Tasks</span>
+                    </a>
+                    <a href="#analytics" class="menu-link">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Analytics</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">SECURITY</div>
+                <nav class="sidebar-menu">
+                    <a href="#security-codes" class="menu-link">
+                        <i class="fas fa-key"></i>
+                        <span>Security Codes</span>
+                    </a>
+                    <a href="#reports" class="menu-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Reports</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">ACCOUNT</div>
+                <nav class="sidebar-menu">
+                    <a href="#profile" class="menu-link">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="#logout" class="menu-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </nav>
+            </div>
+
+            <button class="btn-new-task">
+                <i class="fas fa-plus"></i>
+                Create Admin
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-wrapper">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's your system overview.</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search admins, employees, projects...">
+                    </div>
+                    <button class="header-btn theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="header-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">7</span>
+                    </button>
+                    <div class="header-profile">
+                        <div class="profile-avatar">S</div>
+                        <div class="profile-info">
+                            <span class="user-name">Super Admin</span>
+                            <span class="user-position">Position</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-main">
+                <div class="page-header">
+                    <h2>System Overview</h2>
+                    <button class="btn-export">
+                        <i class="fas fa-download"></i>
+                        Export Report
+                    </button>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Admins</span>
+                            <div class="stat-icon purple">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Employees</span>
+                            <div class="stat-icon cyan">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Projects</span>
+                            <div class="stat-icon green">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Tasks</span>
+                            <div class="stat-icon orange">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+                </div>
+
+                <!-- Admin Management -->
+                <div class="tasks-section">
+                    <div class="section-title-row">
+                        <h2>Admin Management</h2>
+                        <button class="btn-primary">
+                            <i class="fas fa-user-plus"></i>
+                            Create Admin
+                        </button>
+                    </div>
+                    <div class="tasks-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Position</th>
+                                    <th>Team Size</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="no-data">
+                                        <i class="fas fa-user-tie"></i>
+                                        <p>No admins created yet</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Employee Monitoring -->
+                <div class="tasks-section">
+                    <div class="section-title-row">
+                        <h2>Employee Monitoring</h2>
+                    </div>
+                    <div class="tasks-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Position</th>
+                                    <th>Admin</th>
+                                    <th>Tasks</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="no-data">
+                                        <i class="fas fa-users"></i>
+                                        <p>No employees found</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Security Codes -->
+                <div class="tasks-section">
+                    <div class="section-title-row">
+                        <h2>Security Codes</h2>
+                        <button class="btn-primary">
+                            <i class="fas fa-key"></i>
+                            Generate Code
+                        </button>
+                    </div>
+                    <div class="tasks-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Type</th>
+                                    <th>Created</th>
+                                    <th>Expires</th>
+                                    <th>Used</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="no-data">
+                                        <i class="fas fa-key"></i>
+                                        <p>No security codes generated yet</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="btn-mark-read">Mark all as read</button>
+        </div>
+        <div class="notification-body">
+            <div class="notification-item unread">
+                <div class="notif-icon purple">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="notif-content">
+                    <h4>New Admin Created</h4>
+                    <p>You created a new admin account for Michael Brown</p>
+                    <span class="notif-time">30 minutes ago</span>
+                </div>
+                <span class="unread-indicator"></span>
+            </div>
+            <div class="notification-item unread">
+                <div class="notif-icon orange">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="notif-content">
+                    <h4>Security Code Generated</h4>
+                    <p>New admin security code has been generated</p>
+                    <span class="notif-time">2 hours ago</span>
+                </div>
+                <span class="unread-indicator"></span>
+            </div>
+            <div class="notification-item">
+                <div class="notif-icon green">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="notif-content">
+                    <h4>System Performance</h4>
+                    <p>System health is at 98% - All services running smoothly</p>
+                    <span class="notif-time">1 day ago</span>
+                </div>
+            </div>
+        </div>
+        <div class="notification-footer">
+            <a href="#all">View all notifications</a>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

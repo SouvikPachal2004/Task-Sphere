@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - TaskFlow</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-employee">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-tasks"></i>
+                <span>TaskFlow</span>
+            </div>
+            
+            <div class="sidebar-profile">
+                <h3 class="user-name">Employee Name</h3>
+                <p class="user-position">Position</p>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">MAIN</div>
+                <nav class="sidebar-menu">
+                    <a href="#dashboard" class="menu-link active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">TASKS</div>
+                <nav class="sidebar-menu">
+                    <a href="#my-tasks" class="menu-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>My Tasks</span>
+                    </a>
+                    <a href="#projects" class="menu-link">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-label">ACCOUNT</div>
+                <nav class="sidebar-menu">
+                    <a href="#profile" class="menu-link">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="#logout" class="menu-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-wrapper">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's your task overview.</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search tasks...">
+                    </div>
+                    <button class="header-btn theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="header-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="header-profile">
+                        <div class="profile-avatar">E</div>
+                        <div class="profile-info">
+                            <span class="user-name">Employee</span>
+                            <span class="user-position">Position</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-main">
+                <div class="page-header">
+                    <h2>Dashboard Overview</h2>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Tasks</span>
+                            <div class="stat-icon green">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">In Progress</span>
+                            <div class="stat-icon orange">
+                                <i class="fas fa-spinner"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Completed</span>
+                            <div class="stat-icon green">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <span class="stat-title">Overdue</span>
+                            <div class="stat-icon red">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+                </div>
+
+                <!-- Today's Task Section -->
+                <div class="tasks-section">
+                    <h2>Today's Task</h2>
+                    <div id="todayTaskContainer">
+                        <p class="loading">Loading...</p>
+                    </div>
+                </div>
+
+                <!-- All Tasks Section -->
+                <div class="tasks-section">
+                    <h2>All Tasks</h2>
+                    <div id="allTasksContainer" class="tasks-grid">
+                        <p class="loading">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="btn-mark-read">Mark all as read</button>
+        </div>
+        <div class="notification-body">
+            <div class="notification-list">
+                <p class="loading">Loading notifications...</p>
+            </div>
+        </div>
+        <div class="notification-footer">
+            <a href="#all">View all notifications</a>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
