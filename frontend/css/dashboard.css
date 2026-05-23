@@ -36,7 +36,7 @@
 }
 
 .dashboard-employee .sidebar {
-    background: linear-gradient(180deg, #059669 0%, #047857 100%);
+    background: linear-gradient(180deg, #4f46e5 0%, #4338ca 100%);
 }
 
 .dashboard-superadmin .sidebar {
@@ -310,7 +310,7 @@
 }
 
 .dashboard-employee .profile-avatar {
-    background: linear-gradient(135deg, #059669, #10b981);
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
 }
 
 .profile-info {
