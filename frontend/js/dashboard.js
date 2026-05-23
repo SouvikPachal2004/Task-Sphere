@@ -707,10 +707,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (task.status === 'pending-approval') {
                         actionButtons = `
                             <div style="display: flex; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
-                                <button class="btn-sm" onclick="showApproveTaskModal('${task._id}')" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                                <button class="btn-sm btn-success" onclick="showApproveTaskModal('${task._id}')">
                                     <i class="fas fa-check"></i> Approve
                                 </button>
-                                <button class="btn-sm" onclick="showRejectTaskModal('${task._id}')" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                                <button class="btn-sm btn-danger" onclick="showRejectTaskModal('${task._id}')">
                                     <i class="fas fa-times"></i> Reject
                                 </button>
                             </div>
