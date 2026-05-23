@@ -20,8 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // CORS middleware
+const corsOrigins = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['*'];
 app.use(cors({
-    origin: process.env.CORS_ORIGIN || '*',
+    origin: corsOrigins,
     credentials: true
 }));
 
