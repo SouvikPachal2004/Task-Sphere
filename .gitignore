@@ -3,3 +3,8 @@ backend/node_modules/
 .env
 backend/.env
 *.log
+
+.vercel
+
+# Local Netlify folder
+.netlify

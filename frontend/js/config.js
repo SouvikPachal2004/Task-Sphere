@@ -1,24 +1,34 @@
-// API Configuration - Auto-detects environment automatically
+// API Configuration - Points to Railway backend
 
 (function () {
     const hostname = window.location.hostname;
-    const protocol = window.location.protocol;
-    const port = window.location.port;
-
+    
     let apiUrl;
 
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
-        // Local development on same machine
+        // Local development
         apiUrl = 'http://localhost:5000/api';
-    } else if (port === '' || port === '80' || port === '443') {
-        // Deployed on Railway (or any cloud) - no explicit port, use same origin
-        apiUrl = `${protocol}//${hostname}/api`;
     } else {
-        // Local network access from another device (e.g. http://192.168.1.x:5000)
-        apiUrl = `${protocol}//${hostname}:5000/api`;
+        // Production - Always use Railway backend
+        apiUrl = 'https://tasksphere-web-production.up.railway.app/api';
     }
 
     window.API_URL = apiUrl;
+    
+    // Debug logging
+    console.log('🔧 API Configuration Loaded');
+    console.log('📍 Hostname:', hostname);
+    console.log('🔗 API URL:', apiUrl);
+    
+    // Test API connection
+    fetch(apiUrl + '/health')
+        .then(response => response.json())
+        .then(data => {
+            console.log('✅ API Connection Test:', data);
+        })
+        .catch(error => {
+            console.error('❌ API Connection Failed:', error);
+        });
 })();
 
 // For Node.js / CommonJS environments (not used in browser)
