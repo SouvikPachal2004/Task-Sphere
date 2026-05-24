@@ -247,7 +247,28 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="tasks-section">
                 <h3>Recent Activity</h3>
-                <div id="recentActivity"></div>
+                <div id="recentActivity">
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon purple">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p class="activity-text">System initialized successfully</p>
+                                <span class="activity-time">Just now</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon cyan">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p class="activity-text">Welcome to TaskFlow! Start by creating admins and managing your team.</p>
+                                <span class="activity-time">Today</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         `;
         
