@@ -4,7 +4,7 @@ Task Sphere is a full-stack task management and production tracking system built
 
 ## 🌐 Live Demo
 
-🔗 **Live App:** https://tasksphere-web-production.up.railway.app
+🔗 **Live App:** https://tasksphere-app.netlify.app
 
 ## ✨ Features
 
