@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 1rem;
     background: linear-gradient(135deg, #faf5ff 0%, #f5f3ff 50%, #ede9fe 100%);
 }
 
@@ -83,7 +83,7 @@
 
 /* Right Side - Form */
 .auth-form-wrapper {
-    padding: 2.5rem;
+    padding: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,6 +193,13 @@
     color: #94a3b8;
 }
 
+.role-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.875rem;
+    margin-top: 0.5rem;
+}
+
 .role-option {
     position: relative;
 }
@@ -213,6 +220,8 @@
     transition: var(--transition);
     background-color: #f8fafc;
     color: #1e1b4b;
+    min-height: 80px;
+    width: 100%;
 }
 
 [data-theme="dark"] .role-label {
