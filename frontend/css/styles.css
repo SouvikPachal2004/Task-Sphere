@@ -271,10 +271,21 @@ a:hover {
     font-size: 1.4rem;
     font-weight: 700;
     color: #1e1b4b;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover {
+    color: #7c3aed;
+    transform: translateY(-1px);
 }
 
 [data-theme="dark"] .nav-logo {
     color: white;
+}
+
+[data-theme="dark"] .nav-logo:hover {
+    color: #a78bfa;
 }
 
 .nav-logo i {
