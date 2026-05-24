@@ -3,22 +3,8 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    const API_URL = (() => {
-        const configuredUrl = window.TASKSPHERE_API_URL || window.TASKFLOW_API_URL;
-
-        if (configuredUrl) {
-            return configuredUrl.replace(/\/$/, '');
-        }
-
-        if (window.location.protocol === 'file:') {
-            return 'http://localhost:5000/api';
-        }
-
-        const localFrontendPort = window.location.port && window.location.port !== '5000';
-        const isLocalFrontend = ['localhost', '127.0.0.1'].includes(window.location.hostname) && localFrontendPort;
-
-        return isLocalFrontend ? 'http://localhost:5000/api' : `${window.location.origin}/api`;
-    })();
+    // API Base URL - Use the same configuration as config.js
+    const API_URL = window.API_URL || 'https://tasksphere-web-production.up.railway.app/api';
 
     const liveStats = {
         totalUsers: 0,
