@@ -6,6 +6,8 @@ const {
     getAllAdmins,
     getAllEmployees,
     deleteAdmin,
+    deleteEmployee,
+    deleteUser,
     toggleAdminStatus,
     getSecurityCodes,
     getSystemStats,
@@ -24,6 +26,8 @@ router.post('/project', createProject);
 router.get('/admins', getAllAdmins);
 router.get('/employees', getAllEmployees);
 router.delete('/admin/:id', deleteAdmin);
+router.delete('/employee/:id', deleteEmployee);
+router.delete('/user/:id', deleteUser);
 router.put('/admin/:id/toggle-status', toggleAdminStatus);
 router.get('/security-codes', getSecurityCodes);
 router.delete('/security-code/:id', deleteSecurityCode);

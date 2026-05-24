@@ -485,6 +485,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             <button class="btn-sm btn-secondary" onclick="viewEmployeeDetails('${employee._id}')">
                                 View Details
                             </button>
+                            <button class="btn-sm btn-danger" onclick="deleteEmployee('${employee._id}', '${employee.name}')" style="margin-left: 0.5rem;">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
                         </td>
                     </tr>
                 `).join('');
@@ -496,6 +499,32 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('employeesTableBody').innerHTML = '<tr><td colspan="6" class="error">Error loading employees</td></tr>';
         }
     }
+    
+    // Delete employee function
+    window.deleteEmployee = async function(employeeId, employeeName) {
+        if (!confirm(`Are you sure you want to delete ${employeeName}? This action cannot be undone.`)) {
+            return;
+        }
+        
+        try {
+            const response = await fetch(`${API_URL}/superadmin/user/${employeeId}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${authToken}` }
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                alert('Employee deleted successfully');
+                await loadEmployees(); // Reload the employee list
+            } else {
+                alert(data.message || 'Failed to delete employee');
+            }
+        } catch (error) {
+            console.error('Error deleting employee:', error);
+            alert('Error deleting employee. Please try again.');
+        }
+    };
     
     // ============================================
     // PROJECTS SECTION (SUPER ADMIN)

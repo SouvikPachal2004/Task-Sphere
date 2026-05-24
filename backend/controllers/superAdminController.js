@@ -364,3 +364,74 @@ exports.createProject = async (req, res) => {
         });
     }
 };
+
+
+// @desc    Delete employee
+// @route   DELETE /api/superadmin/employee/:id
+// @access  Private (Super Admin only)
+exports.deleteEmployee = async (req, res) => {
+    try {
+        const employee = await User.findById(req.params.id);
+
+        if (!employee) {
+            return res.status(404).json({
+                success: false,
+                message: 'Employee not found'
+            });
+        }
+
+        if (employee.role !== 'employee') {
+            return res.status(400).json({
+                success: false,
+                message: 'User is not an employee'
+            });
+        }
+
+        await employee.deleteOne();
+
+        res.status(200).json({
+            success: true,
+            message: 'Employee deleted successfully'
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+// @desc    Delete any user (admin or employee)
+// @route   DELETE /api/superadmin/user/:id
+// @access  Private (Super Admin only)
+exports.deleteUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+
+        if (user.role === 'superadmin') {
+            return res.status(403).json({
+                success: false,
+                message: 'Cannot delete a super admin account'
+            });
+        }
+
+        await user.deleteOne();
+
+        res.status(200).json({
+            success: true,
+            message: `${user.role.charAt(0).toUpperCase() + user.role.slice(1)} deleted successfully`
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
