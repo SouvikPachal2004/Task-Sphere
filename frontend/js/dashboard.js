@@ -1026,7 +1026,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="tasks-section">
                 <h3>Recent Tasks</h3>
-                <div id="recentTasks"></div>
+                <div id="recentTasks" class="tasks-grid">
+                    <p class="loading">Loading recent tasks...</p>
+                </div>
             </div>
         `;
         
@@ -1047,7 +1049,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('totalProjects').textContent = projectsData.count || 0;
             }
             
-            // Load tasks count
+            // Load tasks count and recent tasks
             const tasksResponse = await fetch(`${API_URL}/admin/tasks`, {
                 headers: { 'Authorization': `Bearer ${authToken}` }
             });
@@ -1056,14 +1058,62 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('totalTasks').textContent = tasksData.count || 0;
                 
                 // Count in-progress and completed
-                const inProgress = tasksData.data.filter(t => t.status === 'in-progress').length;
+                const inProgress = tasksData.data.filter(t => t.status === 'in-progress' || t.status === 'pending-approval').length;
                 const completed = tasksData.data.filter(t => t.status === 'completed').length;
                 
                 document.getElementById('inProgressTasks').textContent = inProgress;
                 document.getElementById('completedTasks').textContent = completed;
+                
+                // Display recent tasks (last 6 tasks)
+                const recentTasksContainer = document.getElementById('recentTasks');
+                if (tasksData.data.length > 0) {
+                    const recentTasks = tasksData.data.slice(0, 6);
+                    recentTasksContainer.innerHTML = recentTasks.map(task => {
+                        let statusBadge = '';
+                        if (task.status === 'pending-approval') {
+                            statusBadge = '<span class="task-status pending-approval" style="background: #f59e0b; color: white; text-transform: uppercase; font-weight: 600;">Pending Approval</span>';
+                        } else if (task.status === 'completed') {
+                            statusBadge = '<span class="task-status completed" style="background: #10b981; color: white;"><i class="fas fa-check-circle"></i> Approved</span>';
+                        } else if (task.status === 'rejected') {
+                            statusBadge = '<span class="task-status rejected" style="background: #ef4444; color: white;"><i class="fas fa-times-circle"></i> Rejected</span>';
+                        } else {
+                            statusBadge = '<span class="task-status in-progress" style="background: #3b82f6; color: white;"><i class="fas fa-spinner"></i> In Progress</span>';
+                        }
+                        
+                        return `
+                            <div class="task-card ${task.status}" style="cursor: pointer;" onclick="loadDashboardSection('tasks')">
+                                <div class="task-header">
+                                    <h4>${task.projectId.projectSubject}</h4>
+                                    ${statusBadge}
+                                </div>
+                                <div class="task-info">
+                                    <span><i class="fas fa-user"></i> ${task.userId.name}</span>
+                                    <span><i class="fas fa-calendar"></i> ${formatDate(task.date)}</span>
+                                </div>
+                                <div class="task-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: ${task.completionPercentage}%"></div>
+                                    </div>
+                                    <span>${task.completionPercentage}%</span>
+                                </div>
+                                <div class="task-stats-row">
+                                    <span>Target: ${task.dailyTarget}</span>
+                                    <span>Completed: ${task.totalProduction}</span>
+                                    <span>Hours: ${8 - task.remainingHours}/8</span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    recentTasksContainer.innerHTML = '<p class="no-data">No tasks submitted yet. Tasks will appear here when employees submit their daily work.</p>';
+                }
             }
         } catch (error) {
             console.error('Error loading admin statistics:', error);
+            const recentTasksContainer = document.getElementById('recentTasks');
+            if (recentTasksContainer) {
+                recentTasksContainer.innerHTML = '<p class="error">Error loading recent tasks</p>';
+            }
         }
     }
     
@@ -1265,7 +1315,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function loadTeamMembers() {
         try {
-            const response = await fetch(`${API_URL}/admin/users`, {
+            const response = await fetch(`${API_URL}/admin/team`, {
                 headers: { 'Authorization': `Bearer ${authToken}` }
             });
             const data = await response.json();
@@ -1273,24 +1323,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const tbody = document.getElementById('teamTableBody');
             
             if (data.success && data.data.length > 0) {
-                // Filter out the current user (admin themselves)
-                const teamMembers = data.data.filter(user => user._id !== currentUser._id);
-                
-                if (teamMembers.length > 0) {
-                    tbody.innerHTML = teamMembers.map(user => `
-                        <tr>
-                            <td>${user.name}</td>
-                            <td>${user.email}</td>
-                            <td>${user.position}</td>
-                            <td><span class="badge ${user.role === 'admin' ? 'purple' : 'cyan'}">${user.role}</span></td>
-                            <td><span class="badge success">Active</span></td>
-                        </tr>
-                    `).join('');
-                } else {
-                    tbody.innerHTML = '<tr><td colspan="5" class="no-data">No team members found</td></tr>';
-                }
+                tbody.innerHTML = data.data.map(user => `
+                    <tr>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>${user.position}</td>
+                        <td><span class="badge cyan">${user.role.toUpperCase()}</span></td>
+                        <td><span class="badge success">ACTIVE</span></td>
+                    </tr>
+                `).join('');
             } else {
-                tbody.innerHTML = '<tr><td colspan="5" class="no-data">No team members found</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" class="no-data">No team members found. Employees will appear here after they accept project invitations.</td></tr>';
             }
         } catch (error) {
             console.error('Error loading team members:', error);

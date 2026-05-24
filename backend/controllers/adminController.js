@@ -216,6 +216,44 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
+// @desc    Get team members (employees assigned to admin's projects)
+// @route   GET /api/admin/team
+// @access  Private (Admin only)
+exports.getTeamMembers = async (req, res) => {
+    try {
+        // Get all projects created by this admin
+        const projects = await Project.find({ createdBy: req.user.id }).select('assignedUsers');
+        
+        // Collect all unique employee IDs from all projects
+        const employeeIds = new Set();
+        projects.forEach(project => {
+            project.assignedUsers.forEach(userId => {
+                employeeIds.add(userId.toString());
+            });
+        });
+        
+        // Get employee details
+        const employees = await User.find({ 
+            _id: { $in: Array.from(employeeIds) },
+            role: 'employee',
+            isActive: true
+        })
+            .select('name email position role')
+            .sort('name');
+
+        res.status(200).json({
+            success: true,
+            count: employees.length,
+            data: employees
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
 // @desc    Get project statistics
 // @route   GET /api/admin/project/:id/stats
 // @access  Private (Admin, Super Admin)

@@ -7,6 +7,7 @@ const {
     updateProject,
     deleteProject,
     getAllUsers,
+    getTeamMembers,
     getProjectStats,
     getAdminTasks,
     getCompletedTasks,
@@ -39,5 +40,6 @@ router.put('/task/:taskId/approve', approveTask);
 
 // User routes
 router.get('/users', getAllUsers);
+router.get('/team', getTeamMembers);
 
 module.exports = router;
