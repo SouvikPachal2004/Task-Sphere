@@ -435,3 +435,37 @@ exports.deleteUser = async (req, res) => {
         });
     }
 };
+
+// @desc    Get approved tasks only (for SuperAdmin view)
+// @route   GET /api/superadmin/tasks
+// @access  Private (Super Admin only)
+exports.getApprovedTasks = async (req, res) => {
+    try {
+        const Task = require('../models/Task');
+        
+        // Get only completed (approved) tasks
+        const tasks = await Task.find({ status: 'completed' })
+            .populate('projectId', 'projectSubject projectCode dailyProductionTarget createdBy')
+            .populate('userId', 'name email position')
+            .populate('approvedBy', 'name email position')
+            .populate({
+                path: 'projectId',
+                populate: {
+                    path: 'createdBy',
+                    select: 'name email position role'
+                }
+            })
+            .sort('-approvedAt');
+
+        res.status(200).json({
+            success: true,
+            count: tasks.length,
+            data: tasks
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};

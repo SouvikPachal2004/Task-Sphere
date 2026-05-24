@@ -12,7 +12,8 @@ const {
     getSecurityCodes,
     getSystemStats,
     deleteSecurityCode,
-    createProject
+    createProject,
+    getApprovedTasks
 } = require('../controllers/superAdminController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -25,6 +26,7 @@ router.post('/generate-code', generateSecurityCode);
 router.post('/project', createProject);
 router.get('/admins', getAllAdmins);
 router.get('/employees', getAllEmployees);
+router.get('/tasks', getApprovedTasks);
 router.delete('/admin/:id', deleteAdmin);
 router.delete('/employee/:id', deleteEmployee);
 router.delete('/user/:id', deleteUser);

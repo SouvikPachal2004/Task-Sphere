@@ -717,7 +717,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function loadTasks() {
         try {
-            const response = await fetch(`${API_URL}/admin/tasks`, {
+            // SuperAdmin uses different endpoint - only sees approved tasks
+            const endpoint = currentUser.role === 'superadmin' 
+                ? `${API_URL}/superadmin/tasks` 
+                : `${API_URL}/admin/tasks`;
+                
+            const response = await fetch(endpoint, {
                 headers: { 'Authorization': `Bearer ${authToken}` }
             });
             const data = await response.json();
@@ -738,37 +743,52 @@ document.addEventListener('DOMContentLoaded', function() {
                         statusBadge = `<span class="task-status ${task.status}">${task.status}</span>`;
                     }
                     
-                    // Action buttons for pending tasks
+                    // Show manager info for SuperAdmin
+                    let managerInfo = '';
+                    if (currentUser.role === 'superadmin' && task.projectId && task.projectId.createdBy) {
+                        managerInfo = `
+                            <div style="margin-top: 8px; padding: 8px; background: rgba(139, 92, 246, 0.1); border-left: 3px solid #8b5cf6; border-radius: 6px; font-size: 13px;">
+                                <div style="font-weight: 600; color: #8b5cf6; margin-bottom: 2px;">
+                                    <i class="fas fa-user-tie"></i> Project Manager:
+                                </div>
+                                <div style="color: var(--text-secondary);">${task.projectId.createdBy.name} (${task.projectId.createdBy.position || 'Admin'})</div>
+                            </div>
+                        `;
+                    }
+                    
+                    // Action buttons for pending tasks (Admin only, not SuperAdmin)
                     let actionButtons = '';
-                    if (task.status === 'pending-approval') {
-                        actionButtons = `
-                            <div style="display: flex; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
-                                <button class="btn-sm btn-success" onclick="showApproveTaskModal('${task._id}')">
-                                    <i class="fas fa-check"></i> Approve
-                                </button>
-                                <button class="btn-sm btn-danger" onclick="showRejectTaskModal('${task._id}')">
-                                    <i class="fas fa-times"></i> Reject
-                                </button>
-                            </div>
-                        `;
-                    } else if (task.status === 'completed' && task.feedback) {
-                        actionButtons = `
-                            <div style="margin-top: 12px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; border-radius: 6px; font-size: 13px;">
-                                <div style="font-weight: 600; color: #10b981; margin-bottom: 4px;">
-                                    <i class="fas fa-comment"></i> Your Feedback:
+                    if (currentUser.role !== 'superadmin') {
+                        if (task.status === 'pending-approval') {
+                            actionButtons = `
+                                <div style="display: flex; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
+                                    <button class="btn-sm btn-success" onclick="showApproveTaskModal('${task._id}')">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                    <button class="btn-sm btn-danger" onclick="showRejectTaskModal('${task._id}')">
+                                        <i class="fas fa-times"></i> Reject
+                                    </button>
                                 </div>
-                                <div style="color: var(--text-secondary);">${task.feedback}</div>
-                            </div>
-                        `;
-                    } else if (task.status === 'rejected' && task.feedback) {
-                        actionButtons = `
-                            <div style="margin-top: 12px; padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; border-radius: 6px; font-size: 13px;">
-                                <div style="font-weight: 600; color: #ef4444; margin-bottom: 4px;">
-                                    <i class="fas fa-comment"></i> Your Feedback:
+                            `;
+                        } else if (task.status === 'completed' && task.feedback) {
+                            actionButtons = `
+                                <div style="margin-top: 12px; padding: 10px; background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; border-radius: 6px; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #10b981; margin-bottom: 4px;">
+                                        <i class="fas fa-comment"></i> Your Feedback:
+                                    </div>
+                                    <div style="color: var(--text-secondary);">${task.feedback}</div>
                                 </div>
-                                <div style="color: var(--text-secondary);">${task.feedback}</div>
-                            </div>
-                        `;
+                            `;
+                        } else if (task.status === 'rejected' && task.feedback) {
+                            actionButtons = `
+                                <div style="margin-top: 12px; padding: 10px; background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; border-radius: 6px; font-size: 13px;">
+                                    <div style="font-weight: 600; color: #ef4444; margin-bottom: 4px;">
+                                        <i class="fas fa-comment"></i> Your Feedback:
+                                    </div>
+                                    <div style="color: var(--text-secondary);">${task.feedback}</div>
+                                </div>
+                            `;
+                        }
                     }
                     
                     return `
@@ -792,12 +812,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span>Completed: ${task.totalProduction}</span>
                                 <span>Hours: ${8 - task.remainingHours}/8</span>
                             </div>
+                            ${managerInfo}
                             ${actionButtons}
                         </div>
                     `;
                 }).join('');
             } else {
-                grid.innerHTML = '<p class="no-data">No tasks found</p>';
+                const noDataMessage = currentUser.role === 'superadmin' 
+                    ? 'No approved tasks found. Tasks will appear here after admins approve them.'
+                    : 'No tasks found';
+                grid.innerHTML = `<p class="no-data">${noDataMessage}</p>`;
             }
         } catch (error) {
             console.error('Error loading tasks:', error);
